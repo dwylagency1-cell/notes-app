@@ -28,6 +28,9 @@ function App() {
   }
   function Delete(index) {
     console.log(index)
+    const copyTask = [...task]
+    copyTask.splice(index, 1)
+    setTask(copyTask)
     
 
     
@@ -43,9 +46,11 @@ function App() {
       <div className=" w-[1/2] m-[20px] grid grid-cols-[300px_300px_300px_300px] gap-x-[50px] gap-y-[20px]">
       {task.map(function(elem, index) {
         return <div className="bg-white h-[300px] rounded-[20px] p-[30px] leading-relaxed relative">
-          <Trash2 onClick={Delete(index)} className="absolute top-5 right-5 text-[red] cursor-pointer" />
-          <h3 className="text-[30px] font-bold font-sans">{elem.titel}</h3>
-          <h3 className="font-sans text-[gray-400]">{elem.description}</h3>
+          <Trash2 onClick={function() {
+            Delete(index)
+          }} className="absolute top-5 right-5 text-[red] cursor-pointer" />
+          <h3 className="text-[30px] font-bold font-sans leading-[30px]">{elem.titel}</h3>
+          <h3 className="font-sans text-[gray-400] mt-[20px]">{elem.description}</h3>
         </div>
       })}
       
